@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# Node
+node_modules/
+dist/
+build/
+.env
+
+# Model artifacts / large binaries
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.onnx
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Secrets / keys
+*.pem
+*.key
+secrets.*
