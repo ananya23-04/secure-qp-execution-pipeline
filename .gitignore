@@ -37,3 +37,8 @@ Thumbs.db
 *.pem
 *.key
 secrets.*
+
+# SafeExam
+*.db
+.pytest_cache/
+output/
