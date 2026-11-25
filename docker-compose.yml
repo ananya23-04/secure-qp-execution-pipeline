@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: safeexam
+      POSTGRES_PASSWORD: safeexam
+      POSTGRES_DB: safeexam
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U safeexam -d safeexam"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+  redis:
+    image: redis:7
+    ports: ["6379:6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 3s
+      retries: 10
+  api:
+    build: ./backend
+    env_file: .env
+    environment:
+      SAFEEXAM_DATABASE_URL: postgresql://safeexam:safeexam@db:5432/safeexam
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: on-failure
+    volumes: ["./output:/srv/output"]   # demo PDFs appear in ./output on your machine
+    ports: ["8000:8000"]
+volumes:
+  pgdata:
