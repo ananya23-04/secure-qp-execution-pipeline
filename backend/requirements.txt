@@ -1,0 +1,11 @@
+fastapi>=0.100
+uvicorn[standard]>=0.23
+sqlalchemy>=2.0
+psycopg2-binary>=2.9
+pydantic>=2.0
+email-validator>=2.0
+cryptography>=41
+PyJWT>=2.8
+httpx>=0.24
+pytest>=7.4
+ortools>=9.9
